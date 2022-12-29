@@ -33,6 +33,34 @@ export default function RootLayout({
 									Accueil
 								</Link>
 							</li>
+							<li>
+								<Link
+									href={"/agenda"}
+								>
+									Agenda
+								</Link>
+							</li>
+							<li>
+								<Link
+									href={"/galerie"}
+								>
+									Galerie
+								</Link>
+							</li>
+							<li>
+								<Link
+									href={"/about"}
+								>
+									Qui sommes-nous?
+								</Link>
+							</li>
+							<li>
+								<Link
+									href={"/contact"}
+								>
+									Contact
+								</Link>
+							</li>
 						</ul>
 					</nav>
 				</header>
