@@ -9,11 +9,10 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const pathname = usePathname() || "/";
 	return (
 		<html>
 			<head />
-			<body className={pathname.split("/").join("-")}>
+			<body>
 				<header>
 					<Link
 						href={"/"}
@@ -67,9 +66,7 @@ export default function RootLayout({
 					</nav>
 				</header>
 
-				<main>
-					{children}
-				</main>
+				{children}
 
 				<footer>
 					<p>
@@ -86,6 +83,6 @@ export default function RootLayout({
 					</p>
 				</footer>
 			</body>
-		</html>
+		</html >
 	);
 }

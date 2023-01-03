@@ -1,6 +1,6 @@
 const About = () => {
 	return (
-		<>
+		<main className="about">
 			<p>
 				Un furry est une personne qui s'intéresse à la culture furry,
 				qui est un mouvement culturel basé autour de la représentation
@@ -27,7 +27,7 @@ const About = () => {
 				Les furries sont simplement des gens passionnés par les animaux
 				anthropomorphes et la culture qui leur est associée.
 			</p>
-		</>
+		</main>
 	);
 };
 

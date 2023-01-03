@@ -13,7 +13,7 @@ const Agenda = async () => {
 	}).toArray()).sort((a, b) => a.date.getTime() - b.date.getTime());
 
 	return (
-		<>
+		<main className="agenda">
 			<ul>
 				{
 					comingEvents.map((event) => (
@@ -25,7 +25,7 @@ const Agenda = async () => {
 					))
 				}
 			</ul>
-		</>
+		</main>
 	);
 };
 
