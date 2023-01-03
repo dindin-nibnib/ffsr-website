@@ -15,6 +15,13 @@ const Agenda = async () => {
 
 	return (
 		<main className="agenda">
+			<h1>Agenda</h1>
+			<p>
+				Cette page recense les événements à venir en relation avec le furry fandom suisse romand!
+			</p>
+			<p>
+				Il y a actuellement {comingEvents.length} événements à venir:
+			</p>
 			<ul>
 				{
 					comingEvents.map((event) => (
