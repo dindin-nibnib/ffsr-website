@@ -1,6 +1,6 @@
 const Index = () => {
 	return (
-		<>
+		<main className="index">
 			<h1>Furry Fandom Suisse Romand</h1>
 
 			<p>
@@ -33,7 +33,7 @@ const Index = () => {
 				ou à venir nous rencontrer lors de nos événements.
 				Nous sommes impatients de vous accueillir dans notre famille furry en Suisse romande !
 			</p>
-		</>
+		</main>
 	);
 };
 
