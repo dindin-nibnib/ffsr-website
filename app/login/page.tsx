@@ -1,5 +1,6 @@
 "use client";
 
+import "./style.scss";
 import { useRouter } from "next/navigation";
 
 const login = async (data: any) => {

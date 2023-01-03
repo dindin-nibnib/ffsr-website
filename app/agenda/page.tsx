@@ -1,3 +1,4 @@
+import "./style.scss";
 import "server-only";
 import { MongoClient } from "mongodb";
 import { Event } from "../../models/event";
