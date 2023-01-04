@@ -1,8 +1,4 @@
-$primary-light: #ffffff;
-$primary-dark: #333333;
-$secondary: #ef1b17;
-$tertiary: #6fc1f8;
-$accent: #9d7cbf;
+@import "variables";
 
 * {
   box-sizing: border-box;
@@ -40,7 +36,7 @@ a {
 body {
   background-color: $primary-light;
   color: $primary-dark;
-  font-family: "Futura", "Bahnschrift", sans-serif;
+  font-family: "Futura", "Bahnschrift", "Helvetica", sans-serif;
   font-size: 16px;
   line-height: 1.5;
 
@@ -112,6 +108,9 @@ body {
 
     p {
       margin: 1rem 0;
+    }
+
+    &.index {
     }
   }
 

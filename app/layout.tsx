@@ -2,6 +2,7 @@ import Image from "next/image";
 import "./style.scss";
 import ffsrIcon from "/assets/ffsr.png";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({
 	children,
@@ -65,9 +66,7 @@ export default function RootLayout({
 					</nav>
 				</header>
 
-				<main>
-					{children}
-				</main>
+				{children}
 
 				<footer>
 					<p>
@@ -84,6 +83,6 @@ export default function RootLayout({
 					</p>
 				</footer>
 			</body>
-		</html>
+		</html >
 	);
 }
