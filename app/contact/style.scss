@@ -1,2 +1,45 @@
+@import "../variables.scss";
+
 main.contact {
+  h2 {
+    margin-top: 2rem;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      margin: 1rem 0;
+
+      a {
+        padding: 1rem;
+        border-radius: 100rem;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        flex-direction: row;
+        width: 100%;
+        justify-content: stretch;
+        background-color: darken($primary-light, 10%);
+
+        @media screen and (prefers-color-scheme: dark) {
+          background-color: lighten($primary-dark, 10%);
+        }
+
+        &:hover {
+          background-color: darken(desaturate($secondary, 40%), 10%);
+        }
+
+        span {
+          flex: 1;
+          text-align: center;
+        }
+
+        img {
+          height: 3rem;
+          border-radius: 100%;
+          margin: 0;
+        }
+      }
+    }
+  }
 }
