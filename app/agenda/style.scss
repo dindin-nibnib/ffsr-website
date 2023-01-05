@@ -3,6 +3,8 @@
 main.agenda {
   ul {
     list-style: none;
+    padding: 0;
+
     li {
       margin-bottom: 1em;
       border: 1px solid $primary-dark;
@@ -16,6 +18,40 @@ main.agenda {
       @media screen and (prefers-color-scheme: dark) {
         border: 1px solid $primary-light;
         background-color: rgba(darken($primary-dark, 20%), 0.3);
+      }
+
+      @media screen and (max-width: 768px) {
+        h2 {
+          font-size: 1rem;
+        }
+
+        &:not(.open) {
+          > *:not(h2) {
+            display: none;
+          }
+
+          h2 {
+            cursor: pointer;
+            &:after {
+              content: "▼";
+              margin-left: 0.5em;
+            }
+          }
+        }
+
+        &.open {
+          > *:not(h2) {
+            display: block;
+          }
+
+          h2 {
+            cursor: pointer;
+            &:after {
+              content: "▲";
+              margin-left: 0.5em;
+            }
+          }
+        }
       }
     }
   }
