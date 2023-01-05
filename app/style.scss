@@ -66,6 +66,15 @@ body {
       margin: 0 1rem;
       display: flex;
       align-items: center;
+
+      @media screen and (max-width: 768px) {
+        margin: 0;
+
+        span {
+          display: none;
+        }
+      }
+
       img {
         height: 4rem;
         border-radius: 100%;
