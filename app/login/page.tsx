@@ -1,20 +1,20 @@
 "use client";
 
-import { FormEventHandler, use } from "react";
+import { FormEventHandler, use, useState } from "react";
 import "./style.scss";
 import Crypto from "crypto";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-const login = async (username: HTMLInputElement | null, password: HTMLInputElement | null) => {
-	let hash = Crypto.createHash("sha256").update(password?.value || "").digest("hex");
+const login = async (username: string, password: string) => {
+	let hash = Crypto.createHash("sha256").update(password || "").digest("hex");
 	let res = await fetch("/api/login", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json"
 		},
 		body: JSON.stringify({
-			username: username?.value,
+			username: username,
 			password: hash
 		})
 	});
@@ -31,15 +31,15 @@ const login = async (username: HTMLInputElement | null, password: HTMLInputEleme
 	}
 };
 
-const onSubmit: FormEventHandler = (event) => {
-	event.preventDefault();
-	const children = event.currentTarget.children;
-	login(children.namedItem("username") as HTMLInputElement | null,
-		children.namedItem("password") as HTMLInputElement | null);
-};
 
 const Login = () => {
+	const [userName, setUserName] = useState("");
+	const [password, setPassword] = useState("");
 
+	const onSubmit: FormEventHandler = (event) => {
+		event.preventDefault();
+		login(userName, password);
+	};
 
 	return (
 		<main className="login">
@@ -47,12 +47,16 @@ const Login = () => {
 				<ul>
 					<li>
 						<label>Nom d'utilisateur</label>
-						<input name="username" />
+						<input name="username" onChange={(v) => (setUserName(v.target.value))} />
 					</li>
 
 					<li>
 						<label>Mot de passe</label>
-						<input name="password" type="password" />
+						<input
+							name="password"
+							type="password"
+							onChange={(v) => setPassword(v.target.value)}
+						/>
 					</li>
 
 					<li>
