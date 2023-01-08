@@ -1,2 +1,13 @@
 main.galerie {
+  div {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+
+    div {
+      background-color: green;
+      height: 100px;
+    }
+  }
 }

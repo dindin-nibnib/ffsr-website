@@ -6,4 +6,5 @@ export default interface Picture {
 	description: string;
 	data: Binary;
 	owner: ObjectId;
+	date: Date;
 }
