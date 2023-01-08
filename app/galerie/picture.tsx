@@ -4,14 +4,14 @@ import "server-only";
 import type Picture from "../../models/gallery";
 import type Account from "../../models/account";
 
-const Picture = ({ id }: { id: ObjectId; }) => {
+const Picture = ({ picId }: { picId: ObjectId; }) => {
 	const client = new MongoClient(process.env.MONGODB_URI || "");
 	const db = client.db("ffsr");
 	const collection = db.collection<Picture>("pictures");
 	const picture = use(
 		collection.findOne({
 			_id: {
-				$eq: id
+				$eq: picId
 			}
 		})
 	);

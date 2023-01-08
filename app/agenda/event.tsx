@@ -8,7 +8,7 @@ const Event = ({ event }: { event: WithId<Event>; }) => {
 
 	return (
 		<li
-			key={event._id}
+			key={event._id.toString()}
 			className={opened ? "open" : ""}
 			onClick={() => setOpened(!opened)}
 		>
