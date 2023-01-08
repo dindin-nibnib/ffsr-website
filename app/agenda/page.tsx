@@ -3,6 +3,7 @@ import "server-only";
 import { MongoClient } from "mongodb";
 import { Event } from "../../models/event";
 import { use } from "react";
+import EventElement from "./event";
 
 const Agenda = () => {
 	const client = new MongoClient(process.env.MONGODB_URI || "");
@@ -29,11 +30,9 @@ const Agenda = () => {
 			<ul>
 				{
 					comingEvents.map((event) => (
-						<li key={event._id.toString()}>
-							<h1>{event.name}</h1>
-							<p>{event.description}</p>
-							<p>{event.date.toString()}</p>
-						</li>
+						<EventElement
+							event={event}
+						/>
 					))
 				}
 			</ul>

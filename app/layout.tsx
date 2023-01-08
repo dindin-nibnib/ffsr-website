@@ -1,14 +1,16 @@
+"use client";
 import Image from "next/image";
 import "./style.scss";
 import ffsrIcon from "/assets/ffsr.png";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const [menuOpen, setMenuOpen] = useState(false);
 	return (
 		<html>
 			<head />
@@ -25,7 +27,17 @@ export default function RootLayout({
 							Furry Fandom Suisse Romand
 						</span>
 					</Link>
-					<nav>
+					<div className="burger"
+						onClick={() => setMenuOpen(!menuOpen)}
+					>
+						<span />
+						<span />
+						<span />
+					</div>
+					<nav
+						className={menuOpen ? "open" : ""}
+						onClick={() => setMenuOpen(false)}
+					>
 						<ul>
 							<li>
 								<Link
