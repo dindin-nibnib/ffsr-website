@@ -1,25 +1,19 @@
 import "./style.scss";
 import "server-only";
 import type Picture from "../../models/gallery";
-import type Account from "../../models/account";
-import { MongoClient, ObjectId } from "mongodb";
-import { use } from "react";
+import { MongoClient } from "mongodb";
+import { Suspense, use } from "react";
+import PictureElement from "./picture";
+import Image from 'next/image';
+import Link from "next/link";
 
 const Gallerie = () => {
 	const client = new MongoClient(process.env.MONGODB_URI || "");
 	const db = client.db("ffsr");
 	const collection = db.collection<Picture>("pictures");
 	const pictures = use(
-		collection.find({}).toArray()
+		collection.find({}, { projection: { _id: 1 } }).toArray()
 	);
-
-	const getOwnerName = (owner: ObjectId) => {
-		return use(
-			db.collection<Account>("accounts").findOne({
-				_id: owner
-			})
-		);
-	};
 
 	return (
 		<main className="galerie">
@@ -30,23 +24,29 @@ const Gallerie = () => {
 
 			<p>
 				Vous pouvez retrouver ici les photos de nos événements.
-				Si vous souhaitez participer à la galerie, n'hésitez pas à nous contacter!
+				Si vous souhaitez participer à la galerie, n'hésitez pas à nous contacter pour vous inscrire!
 			</p>
 
+			<Link href="galerie/poster">
+				<button>
+					Publier une Image
+				</button>
+			</Link>
 			<div>
 				{
 					pictures.map((picture) => (
-						<picture>
-							<img
-								src={`data:image/png;base64,${picture.data.buffer.toString("base64")}`}
-								alt={picture.name}
-							/>
-							<figcaption>
-								{picture.description} - {
-									getOwnerName(picture.owner)?.displayName
-								}
-							</figcaption>
-						</picture>
+						<Suspense fallback={
+							<div>
+								<span>
+									Chargement
+									<span className="first">.</span>
+									<span className="second">.</span>
+									<span className="third">.</span>
+								</span>
+							</div>
+						}>
+							<PictureElement key={picture._id.toString()} id={picture._id} />
+						</Suspense>
 					))
 				}
 			</div>

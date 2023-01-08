@@ -110,7 +110,17 @@ body {
       margin: 1rem 0;
     }
 
-    &.index {
+    form {
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li:not(:last-child) {
+          margin: 1rem 0;
+          display: flex;
+          flex-direction: column;
+        }
+      }
     }
   }
 
