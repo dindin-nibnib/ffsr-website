@@ -26,7 +26,7 @@ const Poster = () => {
 	const handleSubmit: FormEventHandler = async (event) => {
 		event.preventDefault();
 
-		await fetch("/api/postimage", {
+		const res = await fetch("/api/postimage", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -38,11 +38,36 @@ const Poster = () => {
 				token: Cookie.get("token")
 			})
 		});
+
+		if (res.status === 200) {
+			alert("La publication s'est terminée correctement!");
+			router.push("/galerie");
+			return;
+		}
+
+		if (res.status === 401) {
+			alert("L'identification a échoué. Veuillez vous reconnecter.");
+			router.push("/login");
+			return;
+		}
+
+		if (res.status === 500) {
+			alert("Une erreur s'est produite. Veuillez rééssayer plus tard.");
+			return;
+		}
 	};
 
 	return (
 		<main className="galerie-poster">
 			<h1>Poster</h1>
+
+			<p>
+				Vous pouvez utiliser ce formulaire pour publier une image dans la gallerie!
+			</p>
+
+			<p>
+				Les administrateurs se réservent le droit de supprimer une image si jugée inappropriée.
+			</p>
 
 			<form
 				onSubmit={handleSubmit}

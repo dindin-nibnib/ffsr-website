@@ -4,7 +4,6 @@ import type Picture from "../../models/gallery";
 import { MongoClient } from "mongodb";
 import { Suspense, use } from "react";
 import PictureElement from "./picture";
-import Image from 'next/image';
 import Link from "next/link";
 
 const Gallerie = () => {
@@ -12,7 +11,12 @@ const Gallerie = () => {
 	const db = client.db("ffsr");
 	const collection = db.collection<Picture>("pictures");
 	const pictures = use(
-		collection.find({}, { projection: { _id: 1 } }).toArray()
+		collection.find({}, {
+			projection: {
+				_id: 1,
+				date: 1
+			}
+		}).toArray()
 	);
 
 	return (
@@ -34,7 +38,7 @@ const Gallerie = () => {
 			</Link>
 			<div>
 				{
-					pictures.map((picture) => (
+					pictures.sort((a, b) => b.date.getTime() - a.date.getTime()).map((picture) => (
 						<Suspense fallback={
 							<div>
 								<span>
