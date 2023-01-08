@@ -21,7 +21,10 @@ const handler: NextApiHandler = async (req, res) => {
 		res.status(401).json({ message: "Invalid credentials" });
 		return;
 	} else {
-		res.status(200).json({ message: "Logged in" });
+		res.status(200).json({
+			message: "Logged in",
+			id: account._id,
+		});
 	}
 };
 

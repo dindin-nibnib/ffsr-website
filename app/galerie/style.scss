@@ -1,3 +1,5 @@
+@import "../variables.scss";
+
 main.galerie {
   div {
     display: grid;
@@ -6,8 +8,47 @@ main.galerie {
     padding: 1rem;
 
     div {
-      background-color: green;
+      background-color: $primary-dark;
+      font-size: small;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      border: solid $secondary 1px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       height: 100px;
+
+      span {
+        span {
+          @keyframes blink {
+            0% {
+              opacity: 0.5;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 0.5;
+            }
+          }
+
+          animation: blink 1s linear infinite;
+
+          &.first {
+            animation-delay: 0s;
+          }
+
+          &.second {
+            animation-delay: 0.33s;
+          }
+
+          &.third {
+            animation-delay: 0.66s;
+          }
+        }
+      }
     }
   }
 }
