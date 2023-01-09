@@ -19,6 +19,8 @@ const Gallerie = async () => {
 		}).toArray()
 	);
 
+	console.log(pictures);
+
 	return (
 		<main className="galerie">
 			<h1>Galerie</h1>
@@ -59,3 +61,5 @@ const Gallerie = async () => {
 };
 
 export default Gallerie;
+
+export const revalidate = 1;
