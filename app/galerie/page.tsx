@@ -6,18 +6,20 @@ import { Suspense, use } from "react";
 import PictureElement from "./picture";
 import Link from "next/link";
 
-const Gallerie = () => {
+const Gallerie = async () => {
 	const client = new MongoClient(process.env.MONGODB_URI || "");
 	const db = client.db("ffsr");
 	const collection = db.collection<Picture>("pictures");
-	const pictures = use(
+	const pictures = await (
 		collection.find({}, {
 			projection: {
 				_id: 1,
 				date: 1
-			}
+			},
 		}).toArray()
 	);
+
+	console.log(pictures);
 
 	return (
 		<main className="galerie">
@@ -59,3 +61,5 @@ const Gallerie = () => {
 };
 
 export default Gallerie;
+
+export const revalidate = 1;
