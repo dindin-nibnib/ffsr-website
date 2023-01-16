@@ -31,7 +31,7 @@ const Agenda = () => {
 				{
 					comingEvents.map((event) => (
 						<EventElement
-							event={event}
+							eventStr={JSON.stringify(event)}
 						/>
 					))
 				}

@@ -3,8 +3,20 @@ import type { WithId } from "mongodb";
 import type { Event } from "../../models/event";
 import { useState } from "react";
 
-const Event = ({ event }: { event: WithId<Event>; }) => {
+const Event = ({ eventStr }: { eventStr: string; }) => {
+	const event = (JSON.parse(eventStr) as WithId<Event>);
+	event.date = new Date(event.date);
 	const [opened, setOpened] = useState(false);
+
+	Date.prototype.toDateString = function () {
+		return this.toLocaleDateString("fr-CH", {
+			year: "numeric",
+			month: "long",
+			day: "numeric"
+		});
+	};
+
+	console.log(event.date);
 
 	return (
 		<li
@@ -14,7 +26,7 @@ const Event = ({ event }: { event: WithId<Event>; }) => {
 		>
 			<h2>{event.name}</h2>
 			<p>{event.description}</p>
-			<p>{event.date.toString()}</p>
+			<p>{event.date.toDateString()}</p>
 		</li>
 	);
 };
