@@ -1,10 +1,12 @@
 import "./style.scss";
 import "server-only";
 import type Picture from "../../models/gallery";
-import { MongoClient } from "mongodb";
-import { Suspense, use } from "react";
+import { MongoClient, ObjectId } from "mongodb";
+import { Suspense } from "react";
 import PictureElement from "./picture";
 import Link from "next/link";
+import Account from "../../models/account";
+import { cookies } from "next/headers";
 
 const Gallerie = async () => {
 	const client = new MongoClient(process.env.MONGODB_URI || "");
@@ -19,11 +21,26 @@ const Gallerie = async () => {
 		}).toArray()
 	);
 
+	const userName = cookies().has("token") ?
+		await db.collection<Account>("accounts").findOne({
+			_id: {
+				$eq: ObjectId.createFromHexString(cookies().get("token")?.value.slice(0, 24) || "")
+			}
+		}) :
+		null;
+
 	console.log(pictures);
 
 	return (
 		<main className="galerie">
 			<h1>Galerie</h1>
+			{
+				userName?.displayName ? (
+					<em>Connecté en tant que {userName.displayName}</em>
+				) : (
+					undefined
+				)
+			}
 			<p>
 				Bienvenue sur la galerie du Furry Fandom Suisse Romand!
 			</p>
