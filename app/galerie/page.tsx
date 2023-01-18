@@ -38,7 +38,7 @@ const Gallerie = async () => {
 				userName?.displayName ? (
 					<em>Connecté en tant que {userName.displayName}</em>
 				) : (
-					undefined
+					<em>Vous n'êtes pas connecté</em>
 				)
 			}
 			<p>

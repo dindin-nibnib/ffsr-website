@@ -27,7 +27,7 @@ const login = async (username: string, password: string) => {
 		console.log("aasdf");
 		window.location.href = "/galerie";
 	} else {
-		alert(use(res.json()).message || res.statusText || res.status.toString());
+		alert((await res.json()).message || res.statusText || res.status.toString());
 	}
 };
 

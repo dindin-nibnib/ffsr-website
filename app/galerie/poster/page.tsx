@@ -1,14 +1,17 @@
 'use client';
 import Cookies from "universal-cookie";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { FormEventHandler, use, useState, useEffect } from 'react';
 
 
 const Poster = () => {
 	const Cookie = new Cookies();
 	const router = useRouter();
-	if (!Cookie.get("token") && typeof window !== "undefined") {
-		router.push("/login");
+	if (!Cookie.get("token")) {
+		if (typeof window !== "undefined")
+			router.push("/login");
+		else
+			redirect("/login");
 	}
 
 	const [title, setTitle] = useState("");
