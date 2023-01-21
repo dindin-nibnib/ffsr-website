@@ -55,13 +55,6 @@ export default function RootLayout({
 							</li>
 							<li>
 								<Link
-									href={"/galerie"}
-								>
-									Galerie
-								</Link>
-							</li>
-							<li>
-								<Link
 									href={"/about"}
 								>
 									Qui sommes-nous?
