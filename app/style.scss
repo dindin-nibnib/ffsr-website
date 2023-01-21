@@ -1,5 +1,17 @@
 @import "variables";
 
+@font-face {
+  font-family: "Futura";
+  src: url("/fonts/Futura Std Book.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Futura";
+  src: url("/fonts/Futura Std Heavy.ttf");
+  font-weight: bold;
+}
+
 * {
   box-sizing: border-box;
   color-scheme: dark light;
